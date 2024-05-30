@@ -46,7 +46,10 @@ connectDB();
 
 // Init Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'https://my-social-media-ovtl.vercel.app/' // Replace with your actual frontend URL
+  }));
+  
 
 // Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -55,6 +58,10 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/posts', require('./routes/posts'));
 app.use('/api/comments', require('./routes/comments'));
+
+app.get('/', (req, res) => {
+    res.send('API is running...');
+  });
 
 const PORT = process.env.PORT || 5000;
 
