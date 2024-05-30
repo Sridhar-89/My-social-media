@@ -1,0 +1,49 @@
+/* src/components/layout/Navbar.module.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  /* background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); */
+  background: linear-gradient(45deg, #834b83 0%, #7c1a72 25%, #42308d 50%, #010c37 75%, #0e000a 100%);
+  color: white;
+  font-size: 18px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color:white;
+  align-items: center;
+  
+}
+
+.navItems {
+  display: flex;
+  align-items: center;
+}
+
+.navLink {
+  margin-right: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.createPostButton, .logoutButton {
+  background: white;
+  color: #dc2743;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+  margin: 5px 5px 5px 5px;
+}
+
+.createPostButton:hover, .logoutButton:hover {
+  background: #dc2743;
+  color: white;
+}

@@ -1,0 +1,32 @@
+/* src/App.css */
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #fafafa;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(45deg, #3f2e56 0%, #4a216d 25%, #42308d 50%, #010c37 75%, #0e000a 100%);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(45deg, #3f2e56 0%, #4a216d 25%, #42308d 50%, #010c37 75%, #0e000a 100%);
+  
+}
+
+.mainContainer {
+  display: flex;
+  flex: 1;
+  margin: 5px 5px;
+  background: linear-gradient(45deg, #3f2e56 0%, #4a216d 25%, #42308d 50%, #010c37 75%, #0e000a 100%);
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  margin: 5px 5px;
+  
+}
