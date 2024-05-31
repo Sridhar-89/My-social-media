@@ -1,32 +1,113 @@
+// const User = require('../models/User');
+// const jwt = require('jsonwebtoken');
+// const bcrypt = require('bcrypt');
+
+// exports.signup = async (req, res) => {
+//   const { username, email, password } = req.body;
+//   try {
+//     const user = new User({ username, email, password });
+//     await user.save();
+//     res.status(201).send({ message: 'User created successfully' });
+//   } catch (error) {
+//     res.status(400).send(error);
+//   }
+// };
+
+// exports.login = async (req, res) => {
+//   const { email, password } = req.body;
+//   try {
+//     const user = await User.findOne({ email });
+//     if (!user) {
+//       return res.status(404).send({ message: 'User not found' });
+//     }
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) {
+//       return res.status(400).send({ message: 'Invalid credentials' });
+//     }
+//     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+//     res.send({ token });
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// };
+
+
 const User = require('../models/User');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 
 exports.signup = async (req, res) => {
   const { username, email, password } = req.body;
+
   try {
-    const user = new User({ username, email, password });
+    let user = await User.findOne({ email });
+    if (user) {
+      return res.status(400).json({ msg: 'User already exists' });
+    }
+
+    user = new User({
+      username,
+      email,
+      password
+    });
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+
     await user.save();
-    res.status(201).send({ message: 'User created successfully' });
-  } catch (error) {
-    res.status(400).send(error);
+
+    const payload = {
+      user: {
+        id: user.id
+      }
+    };
+
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: 360000 },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token });
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
   }
 };
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
+
   try {
-    const user = await User.findOne({ email });
+    let user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).send({ message: 'User not found' });
+      return res.status(400).json({ msg: 'Invalid credentials' });
     }
+
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).send({ message: 'Invalid credentials' });
+      return res.status(400).json({ msg: 'Invalid credentials' });
     }
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
-    res.send({ token });
-  } catch (error) {
-    res.status(500).send(error);
+
+    const payload = {
+      user: {
+        id: user.id
+      }
+    };
+
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: 360000 },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token });
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
   }
 };
