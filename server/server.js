@@ -36,10 +36,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 
-
 // Load environment variables from .env file
 dotenv.config();
-
 
 const app = express();
 
@@ -48,9 +46,7 @@ connectDB();
 
 // Init Middleware
 app.use(express.json());
-app.use(cors({
-    origin: 'https://my-social-media-pkpo.vercel.app/' // Replace with your actual frontend URL
-  }));
+app.use(cors());
   
 
 // Serve static files from the uploads directory
@@ -62,9 +58,9 @@ app.use('/api/posts', require('./routes/posts'));
 app.use('/api/comments', require('./routes/comments'));
 
 app.get('/', (req, res) => {
-    res.send('https://my-social-media-pkpo.vercel.app/');
+    res.send('API is running...');
   });
 
-
 const PORT = process.env.PORT || 4000;
+
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

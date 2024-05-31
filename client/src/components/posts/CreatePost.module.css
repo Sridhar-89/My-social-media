@@ -40,3 +40,9 @@
 .button:hover {
   background: linear-gradient(45deg, #e6683c 0%, #dc2743 25%, #cc2366 50%, #bc1888 75%, #9b4a96 100%);
 }
+.preview{
+  max-width: fit-content;
+  max-height: 200px;
+  object-fit: cover;
+  margin-bottom: 12px;
+}

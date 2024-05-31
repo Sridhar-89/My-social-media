@@ -284,7 +284,7 @@ const PostItem = ({ post, onDelete, onEdit }) => {
     }
   };
 
-  const baseUrl = "http://localhost:5000"; // Base URL for the backend server
+  const baseUrl = "http://localhost:4000"; // Base URL for the backend server
   const imageUrl = post.image ? `${baseUrl}/uploads/${post.image}` : null;
 
   return (
