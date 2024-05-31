@@ -36,8 +36,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 
+
 // Load environment variables from .env file
 dotenv.config();
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -63,6 +65,6 @@ app.get('/', (req, res) => {
     res.send('API is running...');
   });
 
-const PORT = process.env.PORT || 5000;
+
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
