@@ -62,7 +62,7 @@ app.use('/api/posts', require('./routes/posts'));
 app.use('/api/comments', require('./routes/comments'));
 
 app.get('/', (req, res) => {
-    res.send('API is running...');
+    res.send('https://my-social-media-pkpo.vercel.app/');
   });
 
 
