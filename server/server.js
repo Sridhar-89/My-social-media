@@ -49,7 +49,7 @@ connectDB();
 // Init Middleware
 app.use(express.json());
 app.use(cors({
-    origin: 'https://my-social-media-ovtl.vercel.app/' // Replace with your actual frontend URL
+    origin: 'https://my-social-media-pkpo.vercel.app/' // Replace with your actual frontend URL
   }));
   
 
