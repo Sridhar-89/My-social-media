@@ -46,7 +46,7 @@
 
 // // Init Middleware
 // app.use(express.json());
-// app.use(cors());
+
   
 
 // // Serve static files from the uploads directory
@@ -82,9 +82,7 @@ connectDB();
 
 // Init Middleware
 app.use(express.json());
-app.use(cors({
-  origin: 'https://my-social-media-pkpo.vercel.app/' // Replace with your actual frontend URL
-}));
+app.use(cors());
 
 // Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
