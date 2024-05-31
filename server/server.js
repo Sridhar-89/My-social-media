@@ -66,6 +66,43 @@
 // app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 
+// const express = require('express');
+// const connectDB = require('./config/db');
+// const cors = require('cors');
+// const dotenv = require('dotenv');
+// const path = require('path');
+// const { createProxyMiddleware } = require('http-proxy-middleware');
+
+// dotenv.config();
+
+// const app = express();
+
+// // Connect Database
+// connectDB();
+
+// // Init Middleware
+// app.use(express.json());
+// app.use(cors());
+
+// // Serve static files from the uploads directory
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// // Define Routes
+// app.use('/api/auth', require('./routes/auth'));
+// app.use('/api/posts', require('./routes/posts'));
+// app.use('/api/comments', require('./routes/comments'));
+
+// // Proxy requests to the Vercel frontend
+// app.use('/', createProxyMiddleware({
+//   target: 'https://my-social-media-pkpo.vercel.app/',
+//   changeOrigin: true,
+//   pathRewrite: {
+//     '^/': '/', // rewrite path
+//   },
+// }));
+
+// const PORT = process.env.PORT || 4000;
+// app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
@@ -82,7 +119,13 @@ connectDB();
 
 // Init Middleware
 app.use(express.json());
-app.use(cors());
+
+// CORS configuration
+const corsOptions = {
+  origin: 'https://my-social-media-eight.vercel.app', // Replace with your actual frontend URL
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 // Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -94,7 +137,7 @@ app.use('/api/comments', require('./routes/comments'));
 
 // Proxy requests to the Vercel frontend
 app.use('/', createProxyMiddleware({
-  target: 'https://my-social-media-pkpo.vercel.app/',
+  target: 'https://my-social-media-eight.vercel.app', // Replace with your actual frontend URL
   changeOrigin: true,
   pathRewrite: {
     '^/': '/', // rewrite path
