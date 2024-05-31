@@ -207,7 +207,7 @@ const PostItem = ({ post, onDelete, onEdit }) => {
   const [editedTitle, setEditedTitle] = useState(post.title);
   const [editedContent, setEditedContent] = useState(post.content);
   const [editedImage, setEditedImage] = useState(null);
-  const [preview, setPreview] = useState(post.image ? `http://localhost:5000/uploads/${post.image}` : null);
+  const [preview, setPreview] = useState(post.image ? `http://localhost:4000/uploads/${post.image}` : null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
 

@@ -17,6 +17,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
-    "@tailwindcss/aspect-ratio": "^0.4.2"
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "http-proxy-middleware": "^3.0.0"
   }
 }
