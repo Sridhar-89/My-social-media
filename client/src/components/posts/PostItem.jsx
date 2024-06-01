@@ -207,7 +207,7 @@ const PostItem = ({ post, onDelete, onEdit }) => {
   const [editedTitle, setEditedTitle] = useState(post.title);
   const [editedContent, setEditedContent] = useState(post.content);
   const [editedImage, setEditedImage] = useState(null);
-  const [preview, setPreview] = useState(post.image ? `http://localhost:4000/uploads/${post.image}` : null);
+  const [preview, setPreview] = useState(post.image ? `https://my-social-media-5nl5.onrender.com/uploads/${post.image}` : null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
 
@@ -284,7 +284,7 @@ const PostItem = ({ post, onDelete, onEdit }) => {
     }
   };
 
-  const baseUrl = "http://localhost:4000"; // Base URL for the backend server
+  const baseUrl = "https://my-social-media-5nl5.onrender.com"; // Base URL for the backend server
   const imageUrl = post.image ? `${baseUrl}/uploads/${post.image}` : null;
 
   return (
